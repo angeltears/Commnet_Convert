@@ -1,22 +1,21 @@
-#ifndef _UTILI_H
-#define _UTILI_H
+#ifndef _LOG_H
+#define _LOG_H
 /**********************************************************
-*    > File Name: utili.h
+*    > File Name: log.h
 *    > Author: 51CC_baosongshan
 *    > Mail: baosongshan2006@163.com 
-*    > Created Time: 2017年09月23日 星期六 09时47分16秒
+*    > Created Time: 2017年10月09日 星期一 21时17分28秒
 **********************************************************/
 
 #include<stdio.h>
-#include<stdlib.h>
-#include<assert.h>
 #include<unistd.h>
+#include<time.h>
+#include<string.h>
 #include<stdarg.h>
 #include<syslog.h>
 #include<sys/types.h>
 #include<sys/stat.h>
-#include<dirent.h>
-typedef unsigned long ulong;
+void set_loglevel(int level);
+void sys_log(int log_level, const char *file_name, int line_num, const char *format, ...);
 
-
-#endif // _UTILI_H
+#endif // _LOG_H
