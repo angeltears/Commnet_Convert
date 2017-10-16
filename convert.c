@@ -33,6 +33,6 @@ int main(int argc, char *argv[])
     {
         file_convert(src_path, des_path);
     }
-    sys_log(LOG_INFO, __FILE__, __LINE__, "%s Convert Completion.......\n", des_path);
+    sys_log(LOG_INFO, __FILE__, __LINE__, "%s Convert Completion.......\n", src_path);
     return 0;
 }

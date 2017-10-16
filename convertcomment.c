@@ -110,17 +110,19 @@ void eventpro_no(char ch)
         nextch = fgetc(g_state.input);
         if(nextch == '/')   //C++
         {
-            //fputc('/', g_state.output);
-            //fputc('*', g_state.output);
             write_double_ch('/','*', g_state.output);
             g_state.ulstate = cpp_comment_state;
         }
         else if(nextch == '*')
         {
-            fputc('/', g_state.output);
-            fputc('*', g_state.output);
+            write_double_ch('/','*', g_state.output);
             g_state.ulstate = c_comment_state;
         }
+	else 
+	{
+           fputc('/', g_state.output);
+           fputc(nextch, g_state.output);
+	}
         break;
     case '"':
         g_state.ulstate = str_state;
@@ -163,7 +165,14 @@ void eventpro_cpp(char ch)
                 if(thirdch == '/')
                 {
                     while((thirdch=fgetc(g_state.input)) == '/');
-                    fputc(thirdch, g_state.output);
+                    if (thirdch == '\n')
+                    {   
+                        fseek(g_state.input, -1, SEEK_CUR);   
+                    }
+                    else
+                    {
+                        fputc(thirdch, g_state.output);
+                    }
                 }
                 else
                 {
